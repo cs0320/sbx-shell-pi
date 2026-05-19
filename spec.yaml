@@ -18,6 +18,9 @@ network:
   allowedDomains:
     - "pi.dev:443"
     - "opencode.ai:443"
+    - "deb.nodesource.com:443"
+    - "deb.wakemeops.com:80"
+    - "releases.astral.sh:443"
     # - "chatgpt.com:443"
 
 # credentials:
@@ -37,11 +40,26 @@ commands:
   install:
     - command: "apt-get update && apt-get install -y curl ca-certificates gnupg python3 python3-venv python3-pip python3-dev build-essential git pkg-config nano"
     - command: |
-        curl -sSL "https://raw.githubusercontent.com/upciti/wakemeops/main/assets/install_repository" | sudo bash
-    - command: "sudo apt install glab"
+        mkdir -p /etc/apt/keyrings \
+        && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key \
+            | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
+        && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_24.x nodistro main" \
+            > /etc/apt/sources.list.d/nodesource.list \
+        && apt-get update \
+        && apt-get install -y nodejs \
+        && apt-get clean \
+        && rm -rf /var/lib/apt/lists/*
+      description: Install Node.js
+    - command: |
+        curl -sSL "https://raw.githubusercontent.com/upciti/wakemeops/main/assets/install_repository" | sudo bash \
+        && sudo apt update \
+        && sudo apt install glab
+      description: Install GitLab CLI
     - command: |
         curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="/usr/local/bin" UV_NO_MODIFY_PATH="1" sh
       description: Install uv
+    - command: "sudo apt update && sudo apt upgrade -y"
+      description: Update and upgrade packages
     - command: "curl -fsSL https://pi.dev/install.sh | sh"
       user: "1000"
       description: Install Pi
