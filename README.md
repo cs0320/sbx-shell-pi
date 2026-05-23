@@ -53,7 +53,7 @@ sbx-shell-pi/
 
 - **agent** - set an `entrypoint` if you'd like the sandbox to start directly in pi. I prefer to have access to the shell and start pi manually.
 
-- **network** - the kit is configured with [network](https://docs.docker.com/ai/sandboxes/customize/kits/#network) connection to the [opencode](https://opencode.ai/) provider. The commented connection to openai is provided as an example.
+- **network** - the kit is configured with [network](https://docs.docker.com/ai/sandboxes/customize/kits/#network) connection to the [opencode](https://opencode.ai/) provider. The connection to openai is provided as an example.
 
 - **credentials** - example [credentials](https://docs.docker.com/ai/sandboxes/customize/kits/#credentials) configuration for openai.
 
@@ -66,8 +66,6 @@ sbx-shell-pi/
 - **APPEND_SYSTEM.md** - the [sbx docs](https://docs.docker.com/ai/sandboxes/customize/kits/#memory) recommend to use a `memory` block to append to the agent's memory file at sandbox creation. However, I prefer to inject a file and use Pi's native functionality. This way instructions will be appended directly to the system prompt instead of `AGENTS.md`.
 
 - **settings.json** - you can save your global Pi settings here, so you don't have to configure the agent every time the sandbox is re-created.
-
-- **agents** - the kit includes two example agents: `scout` for codebase reconnaissance and `worker` for implementation. You can modify these or add your own.
 
 ## License
 [MIT License](LICENSE)

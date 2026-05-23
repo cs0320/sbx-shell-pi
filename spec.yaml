@@ -14,27 +14,27 @@ network:
   serviceDomains:
     pi.dev: pi
     opencode.ai: opencode
-    # chatgpt.com: openai
+    api.openai.com: openai
   allowedDomains:
     - "pi.dev:443"
     - "opencode.ai:443"
+    - "api.openai.com:443"
     - "deb.nodesource.com:443"
     - "deb.wakemeops.com:80"
     - "releases.astral.sh:443"
-    # - "chatgpt.com:443"
 
-# credentials:
-#    sources:
-#        openai:
-#            env:
-#                - OPENAI_API_KEY
+credentials:
+   sources:
+       openai:
+           env:
+               - OPENAI_API_KEY
 
 environment:
     variables:
         OPENCODE_API_KEY: sk-opencode
         GITLAB_TOKEN: glpat-secret
-#    proxyManaged:
-#        - OPENAI_API_KEY
+    proxyManaged:
+        - OPENAI_API_KEY
 
 commands:
   install:
