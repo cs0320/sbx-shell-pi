@@ -10,9 +10,13 @@ You are running inside a Docker sandbox. The workspace is mounted at its absolut
 
 ### `edit` - Targeted Replacement
 
+**Parameter structure - `path` is top-level, `edits` is an array of `{oldText, newText}` only:**
+
 ```
-edit(path, edits=[{oldText, newText}, ...])
+edit(path="src/main.py", edits=[{oldText="old line", newText="new line"}, ...])
 ```
+
+`path` goes at the top level alongside `edits`. Each item in `edits` contains **only** `oldText` and `newText` - **never** put `path` inside an edits item. The schema is strict: additional properties in `edits[]` items will cause a validation error.
 
 - `oldText` must match the file **exactly** (CRLF>LF and trailing whitespace are normalized automatically).
 - `newText` replaces the matched region. Use `""` to delete.
