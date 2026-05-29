@@ -43,10 +43,7 @@ sbx-shell-pi/
 ├── spec.yaml
 └── files/home/.pi/agent/
     ├── APPEND_SYSTEM.md
-    ├── settings.json
-	└── agents/
-		├── scout.md
-    	└── worker.md
+    └── settings.json
 ```
 
 ### spec.yaml
