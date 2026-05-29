@@ -6,7 +6,7 @@ description: Minimal terminal coding harness
 
 agent:
   image: "docker/sandbox-templates:shell-docker"
-  persistence: persistent
+  # persistence: persistent
   # entrypoint:
     # run: [pi]
 
