@@ -1,40 +1,44 @@
 schemaVersion: "1"
-kind: agent
+kind: sandbox
 name: pi
 displayName: Pi
 description: Minimal terminal coding harness
 
-agent:
+sandbox:
   image: "docker/sandbox-templates:shell-docker"
-  # persistence: persistent
   # entrypoint:
     # run: [pi]
 
 network:
   serviceDomains:
-    pi.dev: pi
     opencode.ai: opencode
-    api.openai.com: openai
+    # api.openai.com: openai
+  # serviceAuth:
+  #   openai:
+  #     headerName: Authorization
+  #     valueFormat: "Bearer %s"
   allowedDomains:
-    - "pi.dev:443"
-    - "opencode.ai:443"
-    - "api.openai.com:443"
-    - "deb.nodesource.com:443"
-    - "deb.wakemeops.com:80"
-    - "releases.astral.sh:443"
+    - pi.dev
+    - opencode.ai
+    - api.openai.com
+    - chatgpt.com
+    - deb.nodesource.com
+    - deb.wakemeops.com
+    - releases.astral.sh
+    - registry.npmjs.org
 
-credentials:
-   sources:
-       openai:
-           env:
-               - OPENAI_API_KEY
+# credentials:
+#    sources:
+#        openai:
+#            env:
+#             - OPENAI_API_KEY
 
 environment:
     variables:
         OPENCODE_API_KEY: sk-opencode
         GITLAB_TOKEN: glpat-secret
-    proxyManaged:
-        - OPENAI_API_KEY
+    # proxyManaged:
+    #   - OPENAI_API_KEY
 
 commands:
   install:

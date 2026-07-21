@@ -58,6 +58,9 @@ sbx-shell-pi/
 
 - **commands** - [install](https://docs.docker.com/ai/sandboxes/customize/kits/#run-commands) whatever packages you deem necessary as the root user. Install Pi as the agent user. Run additional commands as root/agent if needed.
 
+> [!IMPORTANT]  
+> If you're using Pi with ChatGPT/Codex subscription plan, remove openai from the `serviceDomains` and `credentials` configuration. Otherwise, the proxy will inject your OPENAI_API_KEY into the request to the provider and the subscription plan credentials that you configured in Pi won't work.
+
 ### files
 
 - **APPEND_SYSTEM.md** - the [sbx docs](https://docs.docker.com/ai/sandboxes/customize/kits/#memory) recommend to use a `memory` block to append to the agent's memory file at sandbox creation. However, I prefer to inject a file and use Pi's native functionality. This way instructions will be appended directly to the system prompt instead of `AGENTS.md`.
