@@ -1,0 +1,2 @@
+# Try to avoid one kind of accidental API key leakage.
+files/home/.pi/agent/models.json
